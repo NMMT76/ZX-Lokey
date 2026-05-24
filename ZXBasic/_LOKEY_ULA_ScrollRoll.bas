@@ -1,0 +1,47 @@
+#include "_LOKEY_IO.bas"
+#include "_LOKEY_ULA.bas"
+
+Sub EternalLoop()
+	DO
+	LOOP
+end sub
+
+LOKEYIO_MemCopy(0,3,0,16384,6144+768)
+
+DIM c as UINTEGER
+
+FOR c=0 TO 191
+	LOKEYULA_Scroll(1,1,0)
+	PAUSE 1
+NEXT
+
+PAUSE 100
+
+LOKEYIO_MemCopy(0,3,0,16384,6144+768)
+
+FOR c=0 TO 255
+	LOKEYULA_Scroll(3,1,0)
+	PAUSE 1
+NEXT
+
+PAUSE 100
+
+LOKEYIO_MemFill(3,16384+6144,768,7) 'Paper 7
+
+LOKEYIO_MemCopy(0,3,0,16384,6144)
+
+FOR c=0 TO 191
+	LOKEYULA_Roll(1,1,0)
+	PAUSE 1
+NEXT
+
+PAUSE 100
+
+LOKEYIO_MemCopy(0,3,0,16384,6144)
+
+FOR c=0 TO 255
+	LOKEYULA_Roll(3,1,0)
+	PAUSE 1
+NEXT
+
+EternalLoop()
